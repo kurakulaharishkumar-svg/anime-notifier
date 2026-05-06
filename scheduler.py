@@ -18,9 +18,9 @@ def start_scheduler(job) -> None:
     # Run once immediately on startup
     job()
 
-    schedule.every(1).hours.do(job)
+    schedule.every(3).hours.do(job)
 
-    print("[SCHEDULER] Running every 1 hour. Press Ctrl+C to stop.\n")
+    print("[SCHEDULER] Running every 3 hours. Press Ctrl+C to stop.\n")
 
     while True:
         schedule.run_pending()

@@ -64,9 +64,15 @@ def job() -> None:
             print(f"  ℹ No next airing episode found. Skipping.")
             continue
 
-        episode = next_ep.get("episode")
-        if episode is None:
+        # AniList returns the NEXT episode to air, so subtract 1
+        # to get the latest episode that has actually aired.
+        raw_episode = next_ep.get("episode")
+        if raw_episode is None:
             print(f"  ℹ Episode number missing. Skipping.")
+            continue
+        episode = raw_episode - 1
+        if episode <= 0:
+            print(f"  ℹ No episodes have aired yet. Skipping.")
             continue
 
         romaji = anime.get("title", {}).get("romaji", title)
