@@ -17,6 +17,10 @@ jobs:
   check-episodes:
     runs-on: ubuntu-latest
 
+    # ── Grant write permission so the workflow can push data.json back ──
+    permissions:
+      contents: write
+
     steps:
       # ── Step 1: Checkout the repository ──
       # Pulls the latest code including data.json for episode tracking
